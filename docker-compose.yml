@@ -17,6 +17,6 @@ services:
       - DB_USERNAME=patrick
       - DB_DATABASE=dockertest
     volumes:
-      - './my-project:/app'
+      - './app'
     depends_on:
       - mysql
