@@ -1,0 +1,22 @@
+version: '2.0'
+services:
+  mysql:
+    image: docker.io/bitnami/mysql:latest
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_USER=patrick
+      # MYSQL_PASSWORD=myNewPass1!
+      - MYSQL_DATABASE=dockertest
+  myapp:
+    image: docker.io/bitnami/laravel:9
+    ports:
+      - '8000:8000'
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USERNAME=patrick
+      - DB_DATABASE=dockertest
+    volumes:
+      - './my-project:/app'
+    depends_on:
+      - mysql
